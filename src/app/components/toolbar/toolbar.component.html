@@ -1,0 +1,24 @@
+<p-toolbar>
+    <ng-template pTemplate="start">
+        <button pButton icon="pi pi-bars" class="p-button-rounded p-button-text" (click)="onToggleSidenav()"></button>
+        <span>{{title}}</span>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <button pButton>
+            <i class="pi pi-search"></i>
+        </button>
+        <button pButton>
+            <i class="pi pi-bell"></i>
+        </button>
+        <button pButton>
+            <i class="pi pi-user"></i>
+        </button>
+        <button pButton>
+            <i class="pi pi-cog"></i>
+        </button>
+        <button pButton>
+            <i class="pi pi-sign-out"></i>
+        </button>
+    </ng-template>
+</p-toolbar>

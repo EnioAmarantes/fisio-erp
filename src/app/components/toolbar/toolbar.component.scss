@@ -1,0 +1,14 @@
+p-toolbar {
+    background-color: #3f51b5; /* Cor de fundo do toolbar */
+    max-height: 5%;
+    font-size: 1rem; /* Tamanho da fonte */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem; /* Espaçamento interno */
+}
+
+button {
+    margin-inline: 0.2rem;
+}

@@ -1,0 +1,49 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <span>Clientes</span>
+    </div>
+    <div class="p-toolbar-group-right">
+        <button pButton icon="pi pi-user-plus" class="p-button-rounded p-button-text" [routerLink]="['/customers/new']" pTooltip="Novo Cliente"></button>
+        <button pButton icon="pi pi-refresh" class="p-button-rounded p-button-text" (click)="reloadCustomers()" pTooltip="Recarregar"></button>
+        <button pButton icon="pi pi-filter" class="p-button-rounded p-button-text" (click)="openFilter()" pTooltip="Filtrar"></button>
+    </div>
+</p-toolbar>
+
+<div class ="customers-container">
+  <ng-container *ngIf="isLoading; else tableContent">
+    <div class="loading-container">
+      <p-progressSpinner></p-progressSpinner>
+      <span>Carregando clientes...</span>
+    </div>
+  </ng-container>
+  <ng-template #tableContent>
+    <p-table [value]="customers"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[5, 10, 25, 100]"
+      selectionMode="single"
+      (onRowSelect)="onRowSelect($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Sexo</th>
+          <th>Nascimento</th>
+          <th>Telefone</th>
+          <th>CPF</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customer>
+        <tr [pSelectableRow]="customer" (click)="onRowSelect($event)">
+          <td>{{customer.name}}</td>
+          <td>{{customer.email}}</td>
+          <td>{{customer.sex}}</td>
+          <td>{{customer.dateOfBirth | date:'dd/MM/yyyy'}}</td>
+          <td>{{customer.phoneNumber}}</td>
+          <td>{{customer.cpf}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+</div>

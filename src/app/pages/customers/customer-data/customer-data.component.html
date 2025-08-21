@@ -1,0 +1,104 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="customer-form grid-form">
+  <fieldset>
+    <legend>Informações Pessoais</legend>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="name">Nome</label>
+        <input id="name" type="text" pInputText formControlName="name" required aria-required="true" placeholder="Digite o nome" />
+      </div>
+      <div class="form-col">
+        <label for="gender">Gênero</label>
+        <p-select [options]="genderOptions" formControlName="gender" placeholder="Selecione"></p-select>
+      </div>
+      <div class="form-col">
+        <label for="birthDate">Data de Nascimento</label>
+        <p-date-picker formControlName="birthDate" id="birthDate" placeholder="Selecione a data" dateFormat="dd.mm.yy" [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false"></p-date-picker>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="contactInfo">
+    <legend>Contato</legend>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="cpf">CPF</label>
+        <p-inputMask id="cpf" mask="999.999.999-99" formControlName="cpf" placeholder="Digite o CPF"></p-inputMask>
+      </div>
+      <div class="form-col">
+        <label for="email">Email</label>
+        <input id="email" type="email" pInputText formControlName="email" placeholder="Digite o email" />
+      </div>
+      <div class="form-col">
+        <label for="phoneNumber">Telefone</label>
+        <p-inputMask id="phoneNumber" mask="(99) 99999-9999" formControlName="phoneNumber" placeholder="Digite o telefone"></p-inputMask>
+      </div>
+      <div class="form-col">
+        <label for="whatsAppNumber">WhatsApp</label>
+        <p-inputMask id="whatsAppNumber" mask="(99) 99999-9999" formControlName="whatsAppNumber" placeholder="Digite o WhatsApp"></p-inputMask>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="motherName">Nome da Mãe</label>
+        <input id="motherName" type="text" pInputText formControlName="motherName" placeholder="Digite o nome da mãe" />
+      </div>
+      <div class="form-col">
+        <label for="fatherName">Nome do Pai</label>
+        <input id="fatherName" type="text" pInputText formControlName="fatherName" placeholder="Digite o nome do pai" />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="address">
+    <legend>Endereço</legend>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="zipCode">CEP</label>
+        <p-iconfield>
+          <p-inputicon class="pi pi-search" />
+          <input id="zipCode" type="text" pInputText formControlName="zipCode" placeholder="Digite o CEP" (blur)="searchAddressByZipCode()" />
+        </p-iconfield>
+      </div>
+      <div class="form-col">
+        <label for="street">Logradouro</label>
+        <input id="street" type="text" pInputText formControlName="street" placeholder="Digite o logradouro" />
+      </div>
+      <div class="form-col">
+        <label for="number">Número</label>
+        <input id="number" type="text" pInputText formControlName="number" placeholder="Digite o número" />
+      </div>
+      <div class="form-col">
+        <label for="neighborhood">Bairro</label>
+        <input id="neighborhood" type="text" pInputText formControlName="neighborhood" placeholder="Digite o bairro" />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Outras Informações</legend>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="maritalStatus">Estado Civil</label>
+        <p-select id="maritalStatus" [options]="maritalStatusOptions" formControlName="maritalStatus" placeholder="Selecione"></p-select>
+      </div>
+      <div class="form-col">
+        <label for="ensuranceName">Convênio</label>
+        <input id="ensuranceName" type="text" pInputText formControlName="ensuranceName" placeholder="Digite o convênio" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-col">
+        <label for="description">Descrição</label>
+        <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" pButton label="Salvar" [disabled]="isLoading || customerForm.invalid"></button>
+    <button type="button" pButton label="Cancelar" (click)="cancel()" [disabled]="isLoading" severity="secondary"></button>
+    @if (isLoading) {
+      <p-progressSpinner></p-progressSpinner>
+    }
+  </div>
+</form>
